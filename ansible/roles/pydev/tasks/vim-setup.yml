@@ -1,0 +1,42 @@
+---
+- name: "create ~/.vim dir"
+  file:
+    state: directory
+    path: "{{ home_dir }}/.vim/autoload"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0755
+
+- name: "Get vim-plug"
+  uri:
+    dest: "{{ home_dir }}/.vim/autoload/plug.vim"
+    url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    owner: "{{ username }}"
+    group: "{{ username }}"
+
+- name: "Deploy vimrc file"
+  template:
+    src: vimrc
+    dest: "{{ home_dir }}/.vimrc"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+  register: vimrc_file
+
+- name: "Install plugins"
+  shell: >
+    vim -E -s
+    -c 'source {{ home_dir }}/.vimrc'
+    -c PlugInstall
+    -c qa
+    || true
+  when: vimrc_file.changed
+  failed_when: False
+
+- name: "Install vim python dependency apps"
+  pip:
+    executable: pip3
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - pylint
+    - flake8

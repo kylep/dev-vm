@@ -1,0 +1,4 @@
+---
+username: vagrant
+home_dir: "/home/{{ username }}"
+hostname: dev-env

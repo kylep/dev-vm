@@ -1,0 +1,30 @@
+---
+- name: "create tmux plugins directory"
+  file:
+    state: directory
+    path: "{{ home_dir }}/.tmux/plugins/"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0755
+
+- name: "git clone tmux plugin manager"
+  git:
+    dest: "{{ home_dir }}/.tmux/plugins/tpm"
+    repo: https://github.com/tmux-plugins/tpm
+  become: yes
+  become_user: "{{ username }}"
+
+- name: "Deploy the tmux config file"
+  template:
+    src: tmux.conf
+    dest: "{{ home_dir }}/.tmux.conf"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0644
+  register: tmux_config
+
+- name: "Download tmux plugins"
+  shell: "{{ home_dir }}/.tmux/plugins/tpm/bin/install_plugins"
+  when: tmux_config.changed
+  become: yes
+  become_user: "{{ username }}"
