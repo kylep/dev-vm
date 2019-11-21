@@ -1,0 +1,12 @@
+---
+
+# By default, hostname is dev-env and is defined in defaults/main.yml
+- name: "set hostname"
+  hostname:
+    name: "{{ hostname }}"
+
+- name: "set hostname in hosts file to speed up sudo"
+  lineinfile:
+    dest: /etc/hosts
+    line: "127.0.0.1 {{ hostname }}"
+    state: present

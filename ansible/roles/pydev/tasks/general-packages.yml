@@ -1,0 +1,37 @@
+---
+
+# Package notes:
+# autoconf is needed for `pip install jq` to work
+- name: "Install Apt packages"
+  apt:
+    update_cache: yes
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - autoconf
+    - git
+    - python3
+    - python3-pip
+    - python3-setuptools
+    - tmux
+    - vim
+
+- name: "Update pip"
+  pip:
+    executable: pip3
+    state: latest
+    name: "pip"
+  register: update_pip
+
+# jsc2f:  A tool I made, it lets you edit json cells from SQL as files
+# httpie: a nice http API testing cli
+# jq:     parses json into a nice format for bash scripting and easy reading
+#         ... Removed for now, the installer is broken :-(
+- name: "Install python3 workstation apps"
+  pip:
+    executable: pip3
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - jsc2f
+    - httpie
