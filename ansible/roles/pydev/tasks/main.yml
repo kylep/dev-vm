@@ -4,3 +4,4 @@
 - include: docker.yml
 - include: vim-setup.yml
 - include: tmux-setup.yml
+- include: google-sdk.yml

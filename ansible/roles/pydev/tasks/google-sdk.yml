@@ -1,0 +1,20 @@
+---
+
+
+- name: "Add cloud-sdk apt key"
+  apt_key:
+    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+    state: present
+    keyring: /usr/share/keyrings/cloud.google.gpg
+
+- name: "cloud-sdk apt repository"
+  apt_repository:
+    repo: >
+      deb [signed-by=/usr/share/keyrings/cloud.google.gpg]
+      http://packages.cloud.google.com/apt
+      cloud-sdk main
+
+- name: "Install google-cloud-sdk"
+  apt:
+    update_cache: yes
+    name: google-cloud-sdk

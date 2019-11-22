@@ -89,6 +89,8 @@ In my case, I still prefer a VM for the following reasons:
       Git wrapper to make merge conflicts easier to resolve
 - **Version Control**: Git
 - **Docker**
+- **Cloud Tools**
+    - [Google Cloud SDK](https://cloud.google.com/sdk/docs/)
 - **Other Dev Apps**: Also their dependencies are installed
     - [JSC2F](https://pypi.org/project/jsc2f/):
       A little CLI for interacting with JSON in sql cells
