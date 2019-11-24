@@ -19,4 +19,6 @@ Vagrant.configure(2) do |config|
   config.vm.provision "ansible" do |ansible|
     ansible.playbook = "ansible/site.yml"
   end
+  # Forward port 80 on the VM to 8000 locally for web dev testing
+  config.vm.network :forwarded_port, host: 8000, guest: 80
 end
