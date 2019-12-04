@@ -1,11 +1,15 @@
 ---
-- name: "create ~/.vim dir"
+
+- name: "create vim directories"
   file:
     state: directory
-    path: "{{ home_dir }}/.vim/autoload"
+    path: "{{ item }}"
     owner: "{{ username }}"
     group: "{{ username }}"
     mode: 0755
+  with_items:
+    - "{{ home_dir }}/.vim/autoload"
+    - "{{ home_dir }}/.vim/spell"
 
 - name: "Get vim-plug"
   uri:
@@ -40,3 +44,8 @@
   with_items:
     - pylint
     - flake8
+
+- name: "Deploy VIM spellcheck dictionary additions"
+  template:
+    src: en.utf-8.add
+    dest: "{{ home_dir }}/.vim/spell/en.utf-8.add"

@@ -87,14 +87,21 @@ In my case, I still prefer a VM for the following reasons:
       your Python code.
     - [tpope/vim-fugitive](https://github.com/tpope/vim-fugitive):
       Git wrapper to make merge conflicts easier to resolve
+    - **Spell-check:** Dictionary additions for common technical terms.
+      Reminder: use `:set spell` and `:set nospell` to use this.
 - **Version Control**: Git
 - **Docker**
 - **Cloud Tools**
     - [Google Cloud SDK](https://cloud.google.com/sdk/docs/)
-- **Other Dev Apps**: Also their dependencies are installed
-    - [JSC2F](https://pypi.org/project/jsc2f/):
-      A little CLI for interacting with JSON in sql cells
-    - ~~[jq](https://pypi.org/project/jq/)~~:
-      Broken & disabled for now, it won't install any more..
+- **Pip3-managed CLI Tools**:
     - [httpie](https://pypi.org/project/httpie/):
       An HTTP CLI, useful for working with APIs
+    - [Ansible](https://pypi.org/project/ansible/) IT automation system
+    - ~~[jq](https://pypi.org/project/jq/)~~:
+      Broken & disabled for now, it won't install any more...
+    - [JSC2F](https://pypi.org/project/jsc2f/):
+      A little CLI for interacting with JSON in sql cells
+    - [Breqwatr Deployment Tool](https://pypi.org/project/breqwatr-deployment-tool/)
+      Breqwatr's open-source private cloud deployment tool
+    - [OSC](https://pypi.org/project/python-openstackclient/):
+      command-line client for OpenStack

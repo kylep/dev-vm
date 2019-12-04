@@ -27,6 +27,8 @@
 # httpie: a nice http API testing cli
 # jq:     parses json into a nice format for bash scripting and easy reading
 #         ... Removed for now, the installer is broken :-(
+# ansible: it automation tool. Required openstacksdk to run OpenStack plays
+# python-openstackclient: Installs the OpenStack CLI
 - name: "Install python3 workstation apps"
   pip:
     executable: pip3
@@ -35,3 +37,7 @@
   with_items:
     - jsc2f
     - httpie
+    - ansible
+    - openstacksdk
+    - breqwatr-deployment-tool
+    - python-openstackclient
