@@ -1,4 +1,4 @@
-A simple python development VM.
+A simple, reusable, distributable development VM.
 
 # Usage
 
