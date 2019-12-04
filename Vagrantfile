@@ -13,7 +13,7 @@ Vagrant.configure(2) do |config|
     v.customize [ "modifyvm", :id, "--uartmode1", "disconnected" ]
   end
   # Set the hostname
-  config.vm.define "python-dev" do |nothing|
+  config.vm.define "dev-vm" do |nothing|
   end
   # Run the ansible playbook to configure the VM
   config.vm.provision "ansible" do |ansible|
