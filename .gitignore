@@ -1,5 +1,6 @@
-*/*.log
-*/*.retry
+**/*.DS_Store
+**/*.log
+**/*.retry
+**/*.swp
 .vagrant
-*/*.swp
 tmp/
