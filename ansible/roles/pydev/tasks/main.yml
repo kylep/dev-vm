@@ -5,3 +5,5 @@
 - include: vim-setup.yml
 - include: tmux-setup.yml
 - include: google-sdk.yml
+# Anything that needs NPM must be included below nodejs.yml
+- include: nodejs.yml

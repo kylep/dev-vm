@@ -1,0 +1,37 @@
+---
+
+- name: "Create npm installation directory"
+  file:
+    state: directory
+    path: "{{ home_dir }}/.npm-installer/"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0755
+
+# NodeJS should be installed with Node Version Manager
+- name: "Download NVM installer"
+  get_url:
+    url: https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh
+    dest: "{{ home_dir }}/.npm-installer/nvm-install.sh"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0755
+  register: download_nvm_script
+
+# the NVM installer puts some scripts in ~/.nvm and updates the executing
+# user's ~/.bashrc file such that it exports some env vars and then runs
+# ~/.nvm/nvm.sh. That script appears to export a function, `nvm`, to the bash
+# scope (try `type nvm` to see it).
+- name: "Run the nvm installer"
+  shell:
+    cmd: "bash {{ home_dir }}/.npm-installer/nvm-install.sh"
+    creates: "{{ home_dir }}/.nvm/nvm.sh"
+  become: yes
+  become_user: "{{ username }}"
+  when: download_nvm_script.changed
+
+- name: "Install NodeJS"
+  shell:
+    cmd: >
+      bash -c "source {{ home_dir }}/.nvm/nvm.sh && nvm install node"
+    creates: /home/vagrant/.nvm/versions/node/

@@ -105,3 +105,4 @@ In my case, I still prefer a VM for the following reasons:
       Breqwatr's open-source private cloud deployment tool
     - [OSC](https://pypi.org/project/python-openstackclient/):
       command-line client for OpenStack
+- **NodeJS & NPM**: Mostly for NPM
