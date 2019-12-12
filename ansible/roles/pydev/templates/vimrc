@@ -9,6 +9,10 @@ set undodir=~/.vim/undodir
 set nocompatible
 
 " tab settings
+" expandtab: whenever tab is pressed, insert space chars
+" tabstop: when placing spaces instead of \t, this is how many
+" shiftwidth: spaces used with (auto)indent, >>, and <<
+" Note that in :set paste mode, hard tabs still end up used
 set tabstop=2 shiftwidth=2 expandtab
 autocmd FileType python setlocal shiftwidth=4 tabstop=4 expandtab
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 expandtab
