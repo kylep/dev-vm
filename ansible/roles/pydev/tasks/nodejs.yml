@@ -1,37 +1,30 @@
 ---
 
-- name: "Create npm installation directory"
-  file:
-    state: directory
-    path: "{{ home_dir }}/.npm-installer/"
-    owner: "{{ username }}"
-    group: "{{ username }}"
-    mode: 0755
+# Using NVM seems like a great idea since the APT version is probably
+# old by holy smokes it doesn't work wel with ansible. it's reliance on .bashrc
+# causes too many problems. Adding the nodesource repo to apt works much
+# better.
 
-# NodeJS should be installed with Node Version Manager
-- name: "Download NVM installer"
-  get_url:
-    url: https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh
-    dest: "{{ home_dir }}/.npm-installer/nvm-install.sh"
-    owner: "{{ username }}"
-    group: "{{ username }}"
-    mode: 0755
-  register: download_nvm_script
+- name: "Add nodejs apt key"
+  apt_key:
+    url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
+    state: present
 
-# the NVM installer puts some scripts in ~/.nvm and updates the executing
-# user's ~/.bashrc file such that it exports some env vars and then runs
-# ~/.nvm/nvm.sh. That script appears to export a function, `nvm`, to the bash
-# scope (try `type nvm` to see it).
-- name: "Run the nvm installer"
-  shell:
-    cmd: "bash {{ home_dir }}/.npm-installer/nvm-install.sh"
-    creates: "{{ home_dir }}/.nvm/nvm.sh"
-  become: yes
-  become_user: "{{ username }}"
-  when: download_nvm_script.changed
+- name: "Add nodejs 13.x ppa for apt repo"
+  apt_repository:
+    repo: deb https://deb.nodesource.com/node_13.x bionic main
+    update_cache: yes
 
-- name: "Install NodeJS"
-  shell:
-    cmd: >
-      bash -c "source {{ home_dir }}/.nvm/nvm.sh && nvm install node"
-    creates: /home/vagrant/.nvm/versions/node/
+- name: "Install nodejs"
+  apt:
+    update_cache: yes
+    name: nodejs
+    state: present
+
+# firebase-tools: the CLI for google firebase
+- name: "Install NPM-distributed command-line tools"
+  npm:
+    global: yes
+    name: "{{ item }}"
+  with_items:
+    - firebase-tools
