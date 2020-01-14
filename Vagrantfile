@@ -21,4 +21,5 @@ Vagrant.configure(2) do |config|
   end
   # Forward port 80 on the VM to 8000 locally for web dev testing
   config.vm.network :forwarded_port, host: 8000, guest: 80
+  config.vm.network :forwarded_port, host: 9005, guest: 9005
 end
