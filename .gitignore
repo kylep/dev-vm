@@ -4,3 +4,4 @@
 **/*.swp
 .vagrant
 tmp/
+node_modules/
