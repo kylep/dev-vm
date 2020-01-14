@@ -2,6 +2,7 @@
 
 # Package notes:
 # autoconf is needed for `pip install jq` to work
+# python-rados enables ceph's python imports. Can't use pip for it.
 - name: "Install Apt packages"
   apt:
     update_cache: yes
@@ -15,6 +16,7 @@
     - python3-setuptools
     - tmux
     - vim
+    - python-rados
 
 - name: "Update pip"
   pip:
@@ -41,3 +43,4 @@
     - openstacksdk
     - breqwatr-deployment-tool
     - python-openstackclient
+    - awscli
