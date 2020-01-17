@@ -46,3 +46,4 @@
     - breqwatr-deployment-tool
     - python-openstackclient
     - awscli
+    - tox
