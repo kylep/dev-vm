@@ -37,6 +37,7 @@
     name: "{{ item }}"
     state: present
   with_items:
+    - virtualenv
     - jsc2f
     - httpie
     - ansible
