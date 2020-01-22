@@ -46,4 +46,5 @@
     - breqwatr-deployment-tool
     - python-openstackclient
     - awscli
+    - aws-sam-cli
     - tox
