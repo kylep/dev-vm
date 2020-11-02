@@ -1,5 +1,13 @@
 A simple, reusable, distributable development VM.
 
+# This project is discontinued
+
+I don't use this any more. 
+There's nothing really wrong with it, I just find it easier to work directly from my macbook and its more consistent with what my team is doing. 
+
+This project will be left online for reference purposes. Maybe I'll revive it someday.
+
+
 # Usage
 
 This environment should work on Mac, Windows, and Linux, but I've only tried it
